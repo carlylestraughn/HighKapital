@@ -3,134 +3,393 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>High Kapital — Sell Your House Fast</title>
-  <meta name="description" content="We buy houses fast for cash in California. High Kapital makes it easy to sell your home without agents, repairs, or fees." />
+  <title>High Kapital — Sell Your House Fast for Cash</title>
+  <meta name="description" content="High Kapital buys houses for cash across California. No repairs, no showings, no agent fees. Get a fair, no‑obligation cash offer fast." />
+  <meta property="og:title" content="High Kapital — Sell Your House Fast for Cash" />
+  <meta property="og:description" content="We buy houses fast in California. Fair cash offers. No repairs, no fees. Get an offer today." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://carlylestraughn.github.io/HighKapital/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind via CDN (easy GitHub Pages setup). For production builds, consider a Tailwind build pipeline. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            base: {
+              900: '#0b0b0b',
+              800: '#111111',
+              700: '#1a1a1a',
+              600: '#222222',
+            },
+            gold: {
+              50:  '#fff8e7',
+              100: '#fde9b5',
+              300: '#e9cd74',
+              400: '#dcb84b',
+              500: '#cfa43a',
+              600: '#b3892e',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(0,0,0,0.25)'
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; color: #fff; background-color: #000; }
-    header {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      padding: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-      flex-wrap: wrap;
-    }
-    .logo { font-size: 1.5rem; font-weight: 700; color: #fff; }
-    .nav { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; }
-    .nav a { color: #fff; text-decoration: none; font-weight: 500; font-size: 1rem; }
-    .hero {
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-    .overlay { position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: rgba(0,0,0,0.5); }
-    .hero-content { position: relative; z-index: 2; }
-    .hero-content h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
-    .hero-content p { font-size: 1rem; max-width: 90vw; margin: 0 auto; }
-    .section { padding: 4rem 1.5rem; background-color: #111; text-align: center; }
-    .section h2 { font-size: 2rem; margin-bottom: 1rem; color: #fff; }
-    .section p, .section ul { font-size: 1rem; color: #ccc; max-width: 700px; margin: 0 auto 2rem auto; }
-    .section ul { list-style: none; padding-left: 0; }
-    .section li { margin-bottom: 0.75rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; }
-    .grid-item { background-color: #222; border-radius: 8px; padding: 1rem; color: #fff; font-weight: 600; }
-    form { display: flex; flex-direction: column; max-width: 500px; margin: 0 auto; gap: 1rem; }
-    input, textarea { padding: 0.75rem; border: none; border-radius: 5px; font-size: 1rem; }
-    button { background-color: #fff; color: #000; font-weight: bold; padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; }
-    button:hover { background-color: #ccc; }
-    footer { background: #000; padding: 2rem 1.5rem; text-align: center; color: #777; font-size: 0.875rem; }
-    @media (min-width: 768px) {
-      .hero-content h1 { font-size: 3.5rem; }
-      .hero-content p { font-size: 1.25rem; }
-      .section h2 { font-size: 2.5rem; }
-      .section p, .section ul { font-size: 1.125rem; }
-    }
+    html { scroll-behavior: smooth; }
   </style>
 </head>
-<body>
-  <header>
-    <div class="logo">High Kapital</div>
-    <nav class="nav">
-      <a href="#reasons">Why People Sell</a>
-      <a href="#types">Types of Homes</a>
-      <a href="#locations">Where We Buy</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<body class="bg-base-900 text-white font-sans antialiased">
+  <!-- Header -->
+  <header class="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-base-900/60 bg-base-900/70 border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#top" class="flex items-center gap-3 group">
+          <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-soft">
+            <span class="text-base-900 font-extrabold">HK</span>
+          </div>
+          <span class="font-semibold tracking-tight text-white group-hover:text-gold-400 transition">High Kapital</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm">
+          <a href="#why" class="hover:text-gold-400 transition">Why Sellers Choose Us</a>
+          <a href="#what" class="hover:text-gold-400 transition">What We Buy</a>
+          <a href="#where" class="hover:text-gold-400 transition">Where We Buy</a>
+          <a href="#process" class="hover:text-gold-400 transition">How It Works</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#contact" class="inline-flex items-center rounded-xl border border-gold-500/40 px-4 py-2 text-sm font-semibold text-gold-300 hover:text-white hover:bg-gold-600/90 hover:border-gold-600 transition">Get Offer</a>
+        </div>
+        <!-- Mobile menu button -->
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-white/80 hover:text-white hover:bg-white/10" aria-label="Open Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" /></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/5 bg-base-900/95">
+      <div class="px-4 py-3 space-y-2">
+        <a href="#why" class="block py-2 hover:text-gold-400">Why Sellers Choose Us</a>
+        <a href="#what" class="block py-2 hover:text-gold-400">What We Buy</a>
+        <a href="#where" class="block py-2 hover:text-gold-400">Where We Buy</a>
+        <a href="#process" class="block py-2 hover:text-gold-400">How It Works</a>
+        <a href="#contact" class="mt-2 inline-flex w-full items-center justify-center rounded-xl border border-gold-500/40 px-4 py-2 text-sm font-semibold text-gold-300 hover:text-white hover:bg-gold-600/90 hover:border-gold-600 transition">Get Offer</a>
+      </div>
+    </div>
   </header>
 
-  <section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Sell Your House Fast in California</h1>
-      <p>We buy houses in any condition. No commissions. No fees. No hassle. Get a fair cash offer today.</p>
+  <!-- Hero -->
+  <section id="top" class="relative isolate min-h-[88vh] flex items-center">
+    <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=2000&q=70" alt="Modern California home at dusk" class="absolute inset-0 h-full w-full object-cover opacity-40" />
+    <div class="absolute inset-0 bg-gradient-to-b from-base-900/70 via-base-900/70 to-base-900"></div>
+    <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-28 sm:py-40 text-center">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+        Sell Your House <span class="text-gold-400">Fast</span> in California — For Cash
+      </h1>
+      <p class="mt-5 text-base sm:text-lg text-white/80 max-w-3xl mx-auto">
+        No repairs. No showings. No agent fees. High Kapital gives you a fair, no‑obligation cash offer and closes on your timeline.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="#contact" class="inline-flex items-center rounded-xl bg-gold-500 px-6 py-3 font-semibold text-base-900 hover:bg-gold-600 transition shadow-soft">Get My Cash Offer</a>
+        <a href="#process" class="inline-flex items-center rounded-xl border border-white/10 px-6 py-3 font-semibold text-white hover:bg-white/10 transition">How It Works</a>
+      </div>
+      <div class="mt-8 text-xs text-white/60">Trusted California home buyers • Close in as little as 7–14 days</div>
     </div>
   </section>
 
-  <section class="section" id="reasons">
-    <h2>Why Do People Choose High Kapital?</h2>
-    <div class="grid">
-      <div class="grid-item">Disrepair</div>
-      <div class="grid-item">Inheritance</div>
-      <div class="grid-item">Divorce</div>
-      <div class="grid-item">Fast Cash</div>
-      <div class="grid-item">Retirement</div>
-      <div class="grid-item">Relocation</div>
+  <!-- Social proof / mini-stats -->
+  <section class="py-10 border-t border-white/5 bg-base-800">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+      <div class="p-5 rounded-2xl bg-base-700/60 border border-white/5">
+        <div class="text-3xl font-extrabold text-gold-400">$100M+</div>
+        <div class="text-white/70 text-sm mt-1">in property offers issued</div>
+      </div>
+      <div class="p-5 rounded-2xl bg-base-700/60 border border-white/5">
+        <div class="text-3xl font-extrabold text-gold-400">7–14 days</div>
+        <div class="text-white/70 text-sm mt-1">typical closing timeline</div>
+      </div>
+      <div class="p-5 rounded-2xl bg-base-700/60 border border-white/5">
+        <div class="text-3xl font-extrabold text-gold-400">0%</div>
+        <div class="text-white/70 text-sm mt-1">repairs, showings, or fees</div>
+      </div>
     </div>
-    <p>There are many reasons homeowners sell to High Kapital — but they all end the same: with cash in hand and peace of mind. We’re chosen not only for our fast closings, but for our reliability, respect, and transparency throughout the process.</p>
   </section>
 
-  <section class="section" id="types">
-    <h2>What Types of Homes Do We Buy?</h2>
-    <div class="grid">
-      <div class="grid-item">Unappealing Homes</div>
-      <div class="grid-item">Damaged Homes</div>
-      <div class="grid-item">Single Family Homes</div>
-      <div class="grid-item">Townhomes</div>
-      <div class="grid-item">Apartments</div>
-      <div class="grid-item">Multi-Family Homes</div>
+  <!-- WHY WE BUY -->
+  <section id="why" class="py-20 bg-base-900">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Why Sellers Choose <span class="text-gold-400">High Kapital</span></h2>
+        <p class="mt-4 text-white/70">Whatever your situation, we make selling simple and private. Here are common reasons homeowners come to us.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card -->
+        <article class="group relative overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1200&q=60" alt="Home in need of repairs" class="h-44 w-full object-cover opacity-80 group-hover:opacity-100 transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Property Needs Repairs</h3>
+            <p class="mt-2 text-sm text-white/70">Skip costly renovations and inspections. We buy as‑is, even with significant damage.</p>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1520697222864-8b9e91b2a823?auto=format&fit=crop&w=1200&q=60" alt="Inheritance paperwork" class="h-44 w-full object-cover opacity-80 group-hover:opacity-100 transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Inherited a Property</h3>
+            <p class="mt-2 text-sm text-white/70">Avoid months of listings and upkeep. Convert inherited homes to cash quickly.</p>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1520186994231-6ea0089ab74a?auto=format&fit=crop&w=1200&q=60" alt="Wedding ring on contract" class="h-44 w-full object-cover opacity-80 group-hover:opacity-100 transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Life Changes / Divorce</h3>
+            <p class="mt-2 text-sm text-white/70">Discreet, fast options when you need a clean break without showings.</p>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1514820720301-4c47930b04b0?auto=format&fit=crop&w=1200&q=60" alt="Piggy bank and cash" class="h-44 w-full object-cover opacity-80 group-hover:opacity-100 transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Need Cash Quickly</h3>
+            <p class="mt-2 text-sm text-white/70">Get a fair, transparent offer and close on your schedule — often within 2 weeks.</p>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1504051771394-dd2e66b2e08f?auto=format&fit=crop&w=1200&q=60" alt="Senior couple at home" class="h-44 w-full object-cover opacity-80 group-hover:opacity-100 transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Retirement or Downsizing</h3>
+            <p class="mt-2 text-sm text-white/70">Simplify the process and move forward without repairs or open houses.</p>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=60" alt="Packed boxes for relocation" class="h-44 w-full object-cover opacity-80 group-hover:opacity-100 transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold text-lg">Relocation or Job Move</h3>
+            <p class="mt-2 text-sm text-white/70">Avoid double mortgages and long listings. We buy on your timeline.</p>
+          </div>
+        </article>
+      </div>
+      <p class="mt-8 text-center text-white/70 max-w-3xl mx-auto">We’re chosen for our <span class="text-white">speed</span>, <span class="text-white">certainty</span>, and <span class="text-white">respect</span>. No low‑ball tactics — just clear numbers and straightforward closings.</p>
     </div>
-    <p>We buy homes that need repairs, look outdated, or sit in less desirable locations. Whether it’s an earthquake-damaged house, an inherited property, or a rental needing updates — we’re ready to make a fair offer.</p>
   </section>
 
-  <section class="section" id="locations">
-    <h2>Where Do We Buy Homes?</h2>
-    <div class="grid">
-      <div class="grid-item">Los Angeles County</div>
-      <div class="grid-item">San Bernardino County</div>
-      <div class="grid-item">Riverside County</div>
-      <div class="grid-item">Orange County</div>
-      <div class="grid-item">San Diego County</div>
-      <div class="grid-item">Alameda County</div>
+  <!-- WHAT WE BUY -->
+  <section id="what" class="py-20 bg-base-800 border-y border-white/5">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">What We <span class="text-gold-400">Buy</span></h2>
+        <p class="mt-4 text-white/70">Any condition, any situation — single‑family, multi‑family, and more. If it’s a property in California, we’ll take a look.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="group overflow-hidden rounded-2xl bg-base-700 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=60" alt="Single family home" class="h-44 w-full object-cover group-hover:scale-[1.02] transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Single‑Family Homes</h3>
+            <p class="mt-2 text-sm text-white/70">From starter homes to luxury estates, we buy across price ranges.</p>
+          </div>
+        </article>
+        <article class="group overflow-hidden rounded-2xl bg-base-700 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=60" alt="Townhome row" class="h-44 w-full object-cover group-hover:scale-[1.02] transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Townhomes & Condos</h3>
+            <p class="mt-2 text-sm text-white/70">Quick, HOA‑friendly closings with minimal disruption.</p>
+          </div>
+        </article>
+        <article class="group overflow-hidden rounded-2xl bg-base-700 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=60" alt="Duplex or multifamily" class="h-44 w-full object-cover group-hover:scale-[1.02] transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Duplex & Multi‑Family</h3>
+            <p class="mt-2 text-sm text-white/70">Tenant‑occupied? That’s fine. We evaluate rent rolls and condition.</p>
+          </div>
+        </article>
+        <article class="group overflow-hidden rounded-2xl bg-base-700 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=60" alt="Fixer upper" class="h-44 w-full object-cover group-hover:scale-[1.02] transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Fixers & Outdated Homes</h3>
+            <p class="mt-2 text-sm text-white/70">Outdated kitchens, old roofs, code issues — we buy as‑is.</p>
+          </div>
+        </article>
+        <article class="group overflow-hidden rounded-2xl bg-base-700 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?auto=format&fit=crop&w=1200&q=60" alt="Fire or water damage" class="h-44 w-full object-cover group-hover:scale-[1.02] transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Fire / Water / Foundation</h3>
+            <p class="mt-2 text-sm text-white/70">We handle significant damage and complex rehab scenarios.</p>
+          </div>
+        </article>
+        <article class="group overflow-hidden rounded-2xl bg-base-700 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=60" alt="Rental property" class="h-44 w-full object-cover group-hover:scale-[1.02] transition"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Rentals & Vacant Properties</h3>
+            <p class="mt-2 text-sm text-white/70">From long‑term rentals to vacant homes — we’ll make an offer.</p>
+          </div>
+        </article>
+      </div>
+      <p class="mt-8 text-center text-white/70 max-w-3xl mx-auto">Not sure if your property qualifies? <a href="#contact" class="text-gold-400 hover:underline">Contact us</a> — if it’s in California, we’ll evaluate it.</p>
     </div>
-    <p>From Southern California beaches to the heart of the Bay Area, High Kapital buys homes in every major California market. Whether you're in a big city or a smaller community, we’re ready to talk about your property.</p>
   </section>
 
-  <section class="section" id="contact">
-    <h2>Get Your Cash Offer</h2>
-    <p>Fill out the form below and we’ll get back to you with a fair, no-obligation cash offer.</p>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <input type="text" name="phone" placeholder="Your Phone Number">
-      <textarea name="message" rows="5" placeholder="Tell us about your property" required></textarea>
-      <button type="submit">Get Offer</button>
-    </form>
+  <!-- WHERE WE BUY -->
+  <section id="where" class="py-20 bg-base-900">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Where We <span class="text-gold-400">Buy</span></h2>
+        <p class="mt-4 text-white/70">We purchase homes across California. These are our most active counties:</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1496386261208-3b91b2b3c1a6?auto=format&fit=crop&w=1200&q=60" alt="Los Angeles skyline" class="h-44 w-full object-cover"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Los Angeles County</h3>
+            <p class="mt-1 text-sm text-white/70">LA, Long Beach, Santa Clarita, Pasadena, and more.</p>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1508814474-24dcbf3648e8?auto=format&fit=crop&w=1200&q=60" alt="Laguna Beach, Orange County" class="h-44 w-full object-cover"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Orange County</h3>
+            <p class="mt-1 text-sm text-white/70">Anaheim, Irvine, Costa Mesa, Fullerton, and coastal cities.</p>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=1200&q=60" alt="San Diego waterfront" class="h-44 w-full object-cover"/>
+          <div class="p-5">
+            <h3 class="font-semibold">San Diego County</h3>
+            <p class="mt-1 text-sm text-white/70">San Diego, Chula Vista, Oceanside, Carlsbad, and more.</p>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1537202108838-e7072bad1927?auto=format&fit=crop&w=1200&q=60" alt="Riverside County neighborhood" class="h-44 w-full object-cover"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Riverside County</h3>
+            <p class="mt-1 text-sm text-white/70">Riverside, Moreno Valley, Temecula, Palm Springs area.</p>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1519764622345-23439dd774f6?auto=format&fit=crop&w=1200&q=60" alt="San Bernardino mountains" class="h-44 w-full object-cover"/>
+          <div class="p-5">
+            <h3 class="font-semibold">San Bernardino County</h3>
+            <p class="mt-1 text-sm text-white/70">Ontario, Rancho Cucamonga, Victorville, and beyond.</p>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl bg-base-800 border border-white/5">
+          <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=60" alt="Oakland / Alameda County" class="h-44 w-full object-cover"/>
+          <div class="p-5">
+            <h3 class="font-semibold">Alameda County</h3>
+            <p class="mt-1 text-sm text-white/70">Oakland, Berkeley, Fremont, Hayward, and East Bay.</p>
+          </div>
+        </article>
+      </div>
+      <p class="mt-8 text-center text-white/70 max-w-3xl mx-auto">If your county isn’t listed, we may still buy in your area. <a href="#contact" class="text-gold-400 hover:underline">Reach out</a> to confirm.</p>
+    </div>
   </section>
 
-  <footer>
-    &copy; 2025 High Kapital. We buy houses across California. All rights reserved.
+  <!-- PROCESS -->
+  <section id="process" class="py-20 bg-base-800 border-y border-white/5">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">How the Process <span class="text-gold-400">Works</span></h2>
+        <p class="mt-4 text-white/70">Three simple steps to sell your home without stress.</p>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-3">
+        <div class="rounded-2xl bg-base-700 border border-white/5 p-6">
+          <div class="text-gold-400 font-extrabold text-3xl">1</div>
+          <h3 class="mt-3 font-semibold text-lg">Tell Us About Your Property</h3>
+          <p class="mt-2 text-sm text-white/70">Share a few details about your home — condition, timeline, and goals.</p>
+        </div>
+        <div class="rounded-2xl bg-base-700 border border-white/5 p-6">
+          <div class="text-gold-400 font-extrabold text-3xl">2</div>
+          <h3 class="mt-3 font-semibold text-lg">Receive a Fair Cash Offer</h3>
+          <p class="mt-2 text-sm text-white/70">We evaluate quickly and present a transparent, no‑obligation offer.</p>
+        </div>
+        <div class="rounded-2xl bg-base-700 border border-white/5 p-6">
+          <div class="text-gold-400 font-extrabold text-3xl">3</div>
+          <h3 class="mt-3 font-semibold text-lg">Close on Your Timeline</h3>
+          <p class="mt-2 text-sm text-white/70">Pick the date that works for you. We handle the details and close fast.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / CTA -->
+  <section id="contact" class="relative py-20 bg-base-900">
+    <div class="absolute inset-0 -z-10">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=70" alt="Luxury home background" class="h-full w-full object-cover opacity-[0.08]"/>
+    </div>
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Get Your Cash <span class="text-gold-400">Offer</span></h2>
+          <p class="mt-4 text-white/70 max-w-xl">Fill out the form and our team will follow up with a fair, no‑obligation cash offer. We respect your privacy and never spam.</p>
+          <ul class="mt-6 space-y-3 text-white/80 text-sm">
+            <li class="flex items-start gap-3"><span class="text-gold-400 mt-0.5">•</span> No repairs, fees, or commissions</li>
+            <li class="flex items-start gap-3"><span class="text-gold-400 mt-0.5">•</span> Close as fast as 7–14 days</li>
+            <li class="flex items-start gap-3"><span class="text-gold-400 mt-0.5">•</span> We buy as‑is, any condition</li>
+          </ul>
+        </div>
+        <form action="https://formspree.io/f/your-form-id" method="POST" class="rounded-2xl bg-base-800/80 border border-white/5 p-6 backdrop-blur">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm text-white/80 mb-1">Name</label>
+              <input type="text" name="name" required class="w-full rounded-xl bg-base-700 border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-500/60" placeholder="Your name" />
+            </div>
+            <div>
+              <label class="block text-sm text-white/80 mb-1">Email</label>
+              <input type="email" name="email" required class="w-full rounded-xl bg-base-700 border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-500/60" placeholder="you@example.com" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-sm text-white/80 mb-1">Phone</label>
+              <input type="text" name="phone" class="w-full rounded-xl bg-base-700 border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-500/60" placeholder="(###) ###‑####" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-sm text-white/80 mb-1">Property Address</label>
+              <input type="text" name="address" class="w-full rounded-xl bg-base-700 border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-500/60" placeholder="Street, City, ZIP" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-sm text-white/80 mb-1">Tell us about your property</label>
+              <textarea name="message" rows="5" required class="w-full rounded-xl bg-base-700 border border-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-500/60" placeholder="Condition, timing, anything else"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-gold-500 px-5 py-3 font-semibold text-base-900 hover:bg-gold-600 transition shadow-soft">Get Offer</button>
+          <p class="mt-3 text-xs text-white/50">By submitting, you agree to our <a href="#" class="underline hover:text-white/70">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 bg-base-900">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-3">
+            <div class="h-8 w-8 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center"><span class="text-base-900 font-extrabold text-sm">HK</span></div>
+            <span class="font-semibold">High Kapital</span>
+          </div>
+          <p class="mt-2 text-sm text-white/60 max-w-md">We buy houses for cash across California. Licensed & experienced wholesale home buyers.</p>
+        </div>
+        <div class="text-sm text-white/60">
+          &copy; <span id="year"></span> High Kapital. All rights reserved.
+        </div>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
